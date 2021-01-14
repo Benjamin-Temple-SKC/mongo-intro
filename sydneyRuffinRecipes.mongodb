@@ -1,0 +1,190 @@
+/*
+
+Insert 3 new recipes and their ingredients, amounts, and measures in to the Database
+	
+Write a query to get a list of all the Recipes
+	
+Write a query to get a list of Recipes that use a certain Ingredient
+	
+Write a query to update a recipe you added
+		
+Put your SQL commands in a file in a Github repo and submit the repo link to Lab 1
+
+*/
+
+const recipesArr =
+[
+    {
+      "recipeName": "Grilled Cheese",
+      "recipeDesc": "bread and melted cheese",
+      "instructions": "put cheese on bread, heat until cheese is melted.",
+      "ingredients": [
+        {
+          "ingredientName": "bread",
+          "measure": "slices",
+          "qty": "1"
+        },
+        {
+          "ingredientName": "cheese",
+          "measure": "slices",
+          "qty": "1"
+        }
+      ]
+    },
+    {
+      "recipeName": "Grilled Ham and Cheese",
+      "recipeDesc": "bread ham and melted cheese",
+      "instructions": "put cheese and ham on bread, heat until cheese is melted.",
+      "ingredients": [
+        {
+          "ingredientName": "bread",
+          "measure": "slices",
+          "qty": "1"
+        },
+        {
+          "ingredientName": "cheese",
+          "measure": "slices",
+          "qty": "1"
+        },
+        {
+          "ingredientName": "ham",
+          "measure": "oz",
+          "qty": "16"
+        }
+      ]
+    },
+    {
+      "recipeName": "Taco",
+      "recipeDesc": "Shell, meat, cheese, salsa",
+      "instructions": "Make the taco, layer it up",
+      "ingredients": [
+        {
+          "ingredientName": "shell",
+          "measure": "each",
+          "qty": "1"
+        },
+        {
+          "ingredientName": "cheese, shredded",
+          "measure": "cup",
+          "qty": "16"
+        },
+        {
+          "ingredientName": "meat",
+          "measure": "oz",
+          "qty": "6"
+        },
+        {
+          "ingredientName": "salsa",
+          "measure": "oz",
+          "qty": "1"
+        }
+      ]
+    }
+  ];
+
+use('mongodbVSCodePlaygroundDB');
+
+/* Creating recipes */
+
+db.recipes.insertMany(recipesArr);
+
+    {
+        "recipeName": "Ants on a Log",
+        "recipeDesc": "Easy snack for children",
+        "Instructions": "Cut celery. Put peanut butter in the concave part of the celery. Put raisins on the peanut butter."
+        "Ingredients": [
+            {"ingredientName": "Celery",
+            "measure": "oz",
+            "qty": "1"},
+
+            {
+              "ingredientName": "Peanut butter",
+              "measure": "oz",
+              "qty": "1/2"  
+            },
+
+            {
+             "ingredientName": "Raisins",
+             "measure": "pieces",
+             "qty": 5,
+            }
+
+        ]
+    },
+
+    {
+        "recipeName": "Tortillas",
+        "recipeDesc": "A flat bread.",
+        "Instructions": "Combine ingredients. Knead dough. Divide evenly. Roll thin. Cook on pan until lightly browned."
+        "Ingredients": [
+            {
+                "ingredientName": "flour",
+                "measure": "cups",
+                "qty": 2,
+            },
+
+            {
+                "ingredientName": "salt",
+                "measure": "teaspoon",
+                "qty": 1/2,
+            },
+
+            {
+                "ingredientName": "olive oil",
+                "measure": "tablespoon",
+                "qty": 3,
+            },
+
+            {
+                "ingredientName": "water",
+                "measure": "cup",
+                "qty": 3/4,
+            }
+        ]
+    },
+
+    {
+        "recipeName": "Chocolate PB Grahams",
+        "recipeDesc": "Chocolately Peanut Butter Snack.",
+        "Instructions": "Spread peanut butter inbetween 2 grahams crackers. Refrigerate. Dip cooled cookies into melted chocolate. Let set.",
+        "Ingredients": [
+            {
+                "ingredientName": "peanut butter",
+                "measure": "oz",
+                "qty": 18,
+            },
+
+            {
+                "ingredientName": "graham crackers",
+                "measure": "oz",
+                "qty": 14.3
+            },
+
+            {
+                "ingredientName": "milk chocolate",
+                "measure": "pounds",
+                "qty": 1 + 1/2,
+            }
+        ]
+    }
+
+
+/* Reading database to get list of recipes */
+
+
+db.recipes.find();
+
+/* Reading database to get list of recipes with specific ingredient */
+
+
+db.recipes.find({"ingredients.ingredientName": "peanut butter"});
+
+/* Updating database */
+
+
+db.recipes.updateOne(
+   { recipeName: "Ants on a Log" },
+   {
+     $set: { "recipeName": "Grandma's Food"}
+   }
+);
