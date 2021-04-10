@@ -1,4 +1,4 @@
-# 1/11/21 - MongoDB
+# Student Introduction to MongoDB
 
 **In yesterday's lesson**, we:
 
